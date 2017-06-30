@@ -23,6 +23,7 @@ document.getElementById("start").addEventListener('click',function(){
 },false);
 
 // return an object with the processed base64image
+/*
 function processBase64Image(dataString) {
       var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),response = {};
 
@@ -35,35 +36,17 @@ function processBase64Image(dataString) {
 
       return response;
 }
-/*
+*/
 document.getElementById("savefile").addEventListener('click',function(){
      if(enabled){
             WebCamera.snap(function(data_uri) {
                 // Save the image in a variable
-                var imageBuffer = processBase64Image(data_uri);
-                // Start the save dialog to give a name to the file
-                dialog.showSaveDialog({
-                    filters: [
-                        { name: 'Images', extensions: ['png'] },
-                    ]
-                },function (fileName) {
-                       if (fileName === undefined){
-                            console.log("You didn't save the file because you exit or didn't give a name");
-                            return;
-                       }
-                       // If the user gave a name to the file, then save it
-                       // using filesystem writeFile function
-                       fs.writeFile(fileName, imageBuffer.data, function(err) {
-                           if(err){
-                               console.log("Cannot save the file :'( time to cry !");
-                           }else{
-                               alert("Image saved succesfully");
-                           }
-                       });
-                });
+                debugger;
+                //var imageBuffer = processBase64Image(data_uri);
+                var imgShot = document.querySelector('.imgShot');
+                imgShot.setAttribute('src', data_uri);
              });
      }else{
             console.log("Please enable the camera first to take the snapshot !");
      }
 },false);
-*/
